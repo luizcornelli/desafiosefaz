@@ -1,0 +1,74 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+		<title>Home</title>
+	</h:head>
+	
+	<h:body>
+	
+		<h:form id="usuarios">
+		
+		<p:messages id="messages" showDetail="true" closable="true">
+	        <p:autoUpdate />
+	    </p:messages>
+	
+			<p:dataTable id="usuarioList" var="usuario"
+				value="#{usuarioMB.usuarios}">
+	
+				<p:column headerText="Id">
+					<h:outputText value="#{usuario.id}" />
+				</p:column>
+	
+				<p:column headerText="Nome">
+					<p:inputText id="nomeInput" value="#{usuario.nome}" required="true"
+						maxlength="30" requiredMessage="Campo Nome é obrigatório" />
+				</p:column>
+	
+				<p:column headerText="Email">
+					<p:inputText id="emailInput" value="#{usuario.email}" maxlength="30"
+						required="true" requiredMessage="Campo E-mail é obrigatório" />
+				</p:column>
+	
+				<p:column headerText="Senha">
+					<p:inputText id="senhaInput" value="#{usuario.senha}" maxlength="10"
+						required="true" requiredMessage="Campo Senha é obrigatório" />
+				</p:column>
+	
+				<p:column>
+					<p:commandButton update="usuarioList" value="EXCLUIR"
+						action="#{usuarioMB.deletar(usuario)}">
+					</p:commandButton>
+				</p:column>
+	
+				<p:column>
+					<p:commandButton value="Inserir/Alterar telefone(s)"
+						action="#{usuarioMB.chamaPaginaInserirAlterarTelefone(usuario)}">
+					</p:commandButton>
+				</p:column>
+	
+			</p:dataTable>
+	
+			<br />
+	
+			<p:commandButton id="salva" value="SALVAR ALTERAÇÕES"
+				action="#{usuarioMB.alterar()}">
+	
+				<f:ajax execute="@form" render="@form" />
+	
+			</p:commandButton>
+	
+			<p:commandButton value="NOVO REGISTRO"
+				action="#{usuarioMB.chamaPaginaCadastroUsuario()}">
+			</p:commandButton>
+	
+			<p:commandButton value="SAIR" action="#{loginMB.logOff()}">
+			</p:commandButton>
+	
+		</h:form>
+	
+	</h:body>
+
+</html>

@@ -1,0 +1,38 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+	<h:head>
+		<title>Login</title>
+	</h:head>
+	
+	<h:body>
+	
+		<h:form>
+	
+			<p:growl id="growl-mensagem" />
+	
+			<h:panelGrid columns="2">
+	
+				<p:outputLabel value="E-mail" />
+				<p:inputText id="inputText-login" value="#{loginMB.email}"
+					required="true" maxlength="30"
+					requiredMessage="Campo E-mail é obrigatório" />
+	
+				<p:outputLabel value="Senha" />
+				<p:password id="password-usuario" value="#{loginMB.senha}"
+					required="true" maxlength="10"
+					requiredMessage="Campo Senha é obrigatório" />
+	
+				<p:commandButton value="Acessar" action="#{loginMB.logIn()}"
+					update="growl-mensagem" />
+	
+			</h:panelGrid>
+	
+		</h:form>
+	
+	</h:body>
+
+</html>

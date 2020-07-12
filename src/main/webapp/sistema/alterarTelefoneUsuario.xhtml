@@ -1,0 +1,110 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+		<title>Telefone</title>
+	</h:head>
+	
+	<h:body>
+	
+		<h:form id="telefones">
+	
+			<p:growl id="growl" showDetail="true" sticky="true" />
+	
+			<p:dataTable id="telefoneList" var="telefone"
+				value="#{usuarioMB.telefones}">
+	
+				<p:column headerText="DDD">
+					<p:inputMask id="dddInput" value="#{telefone.ddd}" mask="(99)"
+						required="true" requiredMessage="Campo DDD é obrigatório" />
+				</p:column>
+	
+				<p:column headerText="Número">
+					<p:inputMask id="numeroInput" value="#{telefone.numero}"
+						mask="99999-9999" required="true"
+						requiredMessage="Campo Número é obrigatório" />
+				</p:column>
+	
+				<p:column headerText="Tipo">
+					<p:selectOneMenu headerText="Tipo" value="#{telefone.tipoTelefone}">
+	
+						<f:selectItem itemLabel="Pessoal" itemValue="Pessoal" />
+						<f:selectItem itemLabel="Trabalho" itemValue="Trabalho" />
+						<f:selectItem itemLabel="Residencial" itemValue="Residencial" />
+	
+					</p:selectOneMenu>
+				</p:column>
+	
+	
+				<p:column>
+					<p:commandButton update="telefoneList" value="EXCLUIR"
+						action="#{usuarioMB.deletarTelefone(telefone)}">
+					</p:commandButton>
+				</p:column>
+	
+			</p:dataTable>
+	
+			<br />
+	
+			<p:commandButton id="salva" value="SALVAR ALTERAÇÕES"
+				action="#{usuarioMB.alterarTelefone()}" update="growl">
+	
+				<f:ajax execute="@form" render="@form" />
+	
+			</p:commandButton>
+	
+			<p:commandButton value="INSERIR TELEFONE(S)"
+				oncomplete="PF('dialogInserirTelefone').show()">
+			</p:commandButton>
+	
+			<p:commandButton value="HOME"
+				action="#{usuarioMB.voltarParaTelaIncial()}">
+			</p:commandButton>
+	
+		</h:form>
+	
+		<p:dialog modal="true" height="300" width="600"
+			widgetVar="dialogInserirTelefone">
+	
+			<h:form>
+	
+				<h:panelGrid columns="3" cellpadding="5">
+	
+					<p:outputLabel for="ddd" value="DDD: " />
+					<p:inputMask id="ddd" value="#{usuarioMB.telefone.ddd}" mask="(99)"
+						required="true" />
+					<p:message for="ddd" />
+	
+					<p:outputLabel for="numero" value="Número: " />
+	
+					<p:inputMask id="numero" value="#{usuarioMB.telefone.numero}"
+						required="true" mask="99999-9999" />
+					<p:message for="numero" />
+	
+					<p:outputLabel for="tipo" value="Tipo: " />
+	
+					<p:selectOneMenu id="tipo"
+						value="#{usuarioMB.telefone.tipoTelefone}" required="true">
+	
+						<f:selectItem itemLabel="Pessoal" itemValue="Pessoal" />
+						<f:selectItem itemLabel="Trabalho" itemValue="Trabalho" />
+						<f:selectItem itemLabel="Residencial" itemValue="Residencial" />
+	
+					</p:selectOneMenu>
+					<p:message for="tipo" />
+	
+					<p:commandButton update="@form :telefones:telefoneList"
+						value="ADICIONAR" action="#{usuarioMB.adicionarNovoTelefone()}">
+					</p:commandButton>
+	
+				</h:panelGrid>
+	
+			</h:form>
+	
+		</p:dialog>
+	
+	</h:body>
+
+</html>

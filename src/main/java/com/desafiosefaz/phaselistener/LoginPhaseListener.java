@@ -30,7 +30,7 @@ public class LoginPhaseListener implements PhaseListener {
 			nh.handleNavigation(facesContext, null, "/sistema/home?faces-redirect=true");
 
 		} else if (!existeUsuarioLogado() && !paginaLogin) {
-			nh.handleNavigation(facesContext, null, "/login?faces-redirect=true");
+			nh.handleNavigation(facesContext, null, "/index?faces-redirect=true");
 		}
 	}
 

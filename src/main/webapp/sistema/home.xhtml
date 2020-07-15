@@ -24,22 +24,22 @@
 	
 				<p:column headerText="Nome">
 					<p:inputText id="nomeInput" value="#{usuario.nome}" required="true"
-						maxlength="30" requiredMessage="Campo Nome é obrigatório" />
+						disabled="#{usuario.isAdmin}" maxlength="30" requiredMessage="Campo Nome é obrigatório" />
 				</p:column>
 	
 				<p:column headerText="Email">
 					<p:inputText id="emailInput" value="#{usuario.email}" maxlength="30"
-						required="true" requiredMessage="Campo E-mail é obrigatório" />
+						disabled="#{usuario.isAdmin}" required="true" requiredMessage="Campo E-mail é obrigatório" />
 				</p:column>
 	
 				<p:column headerText="Senha">
 					<p:inputText id="senhaInput" value="#{usuario.senha}" maxlength="10"
-						required="true" requiredMessage="Campo Senha é obrigatório" />
+						disabled="#{usuario.isAdmin}" required="true" requiredMessage="Campo Senha é obrigatório" />
 				</p:column>
 	
 				<p:column>
 					<p:commandButton update="usuarioList" value="EXCLUIR"
-						action="#{usuarioMB.deletar(usuario)}">
+						disabled="#{usuario.isAdmin}"  action="#{usuarioMB.deletar(usuario)}">
 					</p:commandButton>
 				</p:column>
 	

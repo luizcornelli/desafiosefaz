@@ -24,6 +24,8 @@ public class Usuario {
 	private String email;
 
 	private String senha;
+	
+	private Boolean isAdmin; 
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
 	private List<Telefone> telefones = new ArrayList<>();
@@ -32,11 +34,12 @@ public class Usuario {
 
 	}
 
-	public Usuario(String nome, String email, String senha) {
+	public Usuario(String nome, String email, String senha, Boolean isAdmin) {
 		super();
 		this.nome = nome;
 		this.email = email;
 		this.senha = senha;
+		this.isAdmin = isAdmin;
 	}
 
 	public Long getId() {
@@ -69,6 +72,14 @@ public class Usuario {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+
+	public Boolean getIsAdmin() {
+		return isAdmin;
+	}
+
+	public void setIsAdmin(Boolean isAdmin) {
+		this.isAdmin = isAdmin;
 	}
 
 	public List<Telefone> getTelefones() {

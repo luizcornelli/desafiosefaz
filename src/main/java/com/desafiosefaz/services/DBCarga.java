@@ -23,9 +23,11 @@ public class DBCarga {
 
 		System.out.println("Inicializando carga inicial dos Usuários...");
 
-		Usuario usuario1 = new Usuario("Luiz", "luiz@gmail.com", "12345");
-		Usuario usuario2 = new Usuario("Maria", "maria@hotmail.com", "54321");
-		Usuario usuario3 = new Usuario("José", "jose@bol.com.br", "23415");
+		Usuario usuario0 = new Usuario("admin", "admin@admin.com", "12345", true); 
+		
+		Usuario usuario1 = new Usuario("Luiz", "luiz@gmail.com", "12345", false);
+		Usuario usuario2 = new Usuario("Maria", "maria@hotmail.com", "54321", false);
+		Usuario usuario3 = new Usuario("José", "jose@bol.com.br", "23415", false);
 
 		Telefone telefone1 = new Telefone("81", "888888888", "Residencial", usuario1);
 		Telefone telefone2 = new Telefone("22", "333444345", "Pessoal", usuario2);
@@ -34,7 +36,8 @@ public class DBCarga {
 		usuario1.getTelefones().addAll(Arrays.asList(telefone1));
 		usuario2.getTelefones().addAll(Arrays.asList(telefone2));
 		usuario3.getTelefones().addAll(Arrays.asList(telefone3));
-
+		
+		this.entityManager.persist(usuario0);
 		this.entityManager.persist(usuario1);
 		this.entityManager.persist(usuario2);
 		this.entityManager.persist(usuario3);

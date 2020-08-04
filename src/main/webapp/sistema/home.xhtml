@@ -28,15 +28,15 @@
 				</p:column>
 	
 				<p:column headerText="Email">
-					<p:inputText id="emailInput" value="#{usuario.email}" maxlength="30"
-						disabled="#{usuario.isAdmin}" required="true" requiredMessage="Campo E-mail é obrigatório" />
+					<p:inputText id="emailInput" value="#{usuario.email}" maxlength="30" required="true" 
+						disabled="#{usuario.isAdmin}" requiredMessage="Campo E-mail é obrigatório" />
 				</p:column>
 	
 				<p:column headerText="Senha">
-					<p:inputText id="senhaInput" value="#{usuario.senha}" maxlength="10"
-						disabled="#{usuario.isAdmin}" required="true" requiredMessage="Campo Senha é obrigatório" />
+					<p:inputText id="senhaInput" value="#{usuario.senha}" maxlength="10" required="true" 
+						disabled="#{usuario.isAdmin}" requiredMessage="Campo Senha é obrigatório" />
 				</p:column>
-	
+				
 				<p:column>
 					<p:commandButton update="usuarioList" value="EXCLUIR"
 						disabled="#{usuario.isAdmin}"  action="#{usuarioMB.deletar(usuario)}">
@@ -45,7 +45,7 @@
 	
 				<p:column>
 					<p:commandButton value="Inserir/Alterar telefone(s)"
-						action="#{usuarioMB.chamaPaginaInserirAlterarTelefone(usuario)}">
+						disabled="#{usuario.isAdmin}" action="#{usuarioMB.chamaPaginaInserirAlterarTelefone(usuario)}">
 					</p:commandButton>
 				</p:column>
 	

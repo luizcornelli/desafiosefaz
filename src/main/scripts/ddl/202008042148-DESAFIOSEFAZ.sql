@@ -16,6 +16,6 @@ create table telefone (
 	,numero varchar(30) 
 	,tipo_telefone varchar(30)
 	,id_usuario integer
-	,foreign key (id_usuario) references usuario (id) on delete cascade
+	,foreign key (id_usuario) references usuario (id)
 );
 

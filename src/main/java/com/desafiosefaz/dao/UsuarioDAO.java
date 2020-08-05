@@ -81,13 +81,53 @@ public class UsuarioDAO {
 	}
 
 	public void deletar(Usuario usuario) {
-
+		
+		deletarTelefones(usuario); 
+		
 		String sql = "DELETE FROM usuario WHERE id = ?";
 
 		Connection conn        = null;
 		PreparedStatement pstm = null;
 
 		try {
+			conn = ConnectionFactory.createConnectionToMySQL();
+
+			pstm = conn.prepareStatement(sql);
+
+			pstm.setLong(1, usuario.getId());
+
+			pstm.execute();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+
+			try {
+				if (pstm != null) {
+
+					pstm.close();
+				}
+
+				if (conn != null) {
+					conn.close();
+				}
+
+			} catch (Exception e) {
+
+				e.printStackTrace();
+			}
+		}
+	}
+
+	private void deletarTelefones(Usuario usuario) {
+		
+		String sql = "DELETE FROM telefone WHERE id_usuario = ?"; 
+		
+		Connection conn        = null;
+		PreparedStatement pstm = null;
+
+		try {
+			
 			conn = ConnectionFactory.createConnectionToMySQL();
 
 			pstm = conn.prepareStatement(sql);
